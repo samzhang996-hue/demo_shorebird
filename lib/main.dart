@@ -1,7 +1,9 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
+import 'package:shorebird_code_push/shorebird_code_push.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -19,8 +21,23 @@ class MyApp extends StatelessWidget {
 }
 
 // 修改代码后，比如更改文本
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final sb = ShorebirdUpdater();
+
+  var _available = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _available = sb.isAvailable;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +47,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            if (!_available) Text('当前安装的 App 不是 Shorebird 引擎构建', style: Theme.of(context).textTheme.headlineMedium) else Text('支持更新', style: Theme.of(context).textTheme.headlineMedium),
             // 修改这里
             Text(
               '当前版本: 1.0.1', // 改变文本
