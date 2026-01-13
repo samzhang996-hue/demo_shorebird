@@ -35,3 +35,6 @@ shorebird build apk --verbose      # 详细日志构建
 # ========== 注意 ==========
 # ========== 注意 ==========
 # ========== 注意 ==========
+
+# ========== 测试包 ========== 
+shorebird release ios -- --export-method ad-hoc
