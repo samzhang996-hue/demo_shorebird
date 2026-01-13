@@ -18,28 +18,33 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// 修改代码后，比如更改文本
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Shorebird 热更新演示'), backgroundColor: Theme.of(context).colorScheme.inversePrimary),
+      appBar: AppBar(title: const Text('Shorebird 热更新演示')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.rocket_launch, size: 80, color: Colors.blue),
-            const SizedBox(height: 20),
-            Text('当前版本: 1.0.0', style: Theme.of(context).textTheme.headlineMedium),
-            const SizedBox(height: 10),
-            const Text('这是原始版本', style: TextStyle(fontSize: 18, color: Colors.grey)),
-            const SizedBox(height: 40),
-            // 修改这里来测试热更新
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(color: Colors.blue.shade50, borderRadius: BorderRadius.circular(12)),
-              child: const Text('🎉 Hello Shorebird!', style: TextStyle(fontSize: 24)),
+            // 修改这里
+            Text(
+              '当前版本: 1.0.1', // 改变文本
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const Text(
+              '🎊 这是热更新后的版本！', // 新增内容
+              style: TextStyle(fontSize: 18, color: Colors.green),
+            ),
+            // 新增功能
+            ElevatedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('新功能按钮！')));
+              },
+              child: const Text('新功能'),
             ),
           ],
         ),
